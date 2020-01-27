@@ -32,7 +32,7 @@ Running main.py gave me the following results:
     60000/60000 [==============================] - 2s 30us/sample - loss: 0.2705 - accuracy: 0.8975 - val_loss: 0.3441 - val_accuracy: 0.8832
     Epoch 13/50
     60000/60000 [==============================] - 2s 30us/sample - loss: 0.2674 - accuracy: 0.8999 - val_loss: 0.3402 - val_accuracy: 0.8828
-```git
+```
 
 After adding a Dropout layer `model.add(tf.keras.layers.Dropout(0.2))`
 
