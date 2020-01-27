@@ -1,6 +1,6 @@
-# fashion-mnist
+# Using Tensorflow 2.0 to classify images from the Fashion-MNIST dataset
 
-## Building a neural network to classify images from the Fashion-MNIST dataset
+## Using Tensorflow 2.0 to create a simple model that can be used to recognise and classify different items of clothing  
 
 Running main.py gave me the following results:
 
@@ -32,6 +32,10 @@ Running main.py gave me the following results:
     60000/60000 [==============================] - 2s 30us/sample - loss: 0.2705 - accuracy: 0.8975 - val_loss: 0.3441 - val_accuracy: 0.8832
     Epoch 13/50
     60000/60000 [==============================] - 2s 30us/sample - loss: 0.2674 - accuracy: 0.8999 - val_loss: 0.3402 - val_accuracy: 0.8828
-```
+```git
 
-Despite adding a Dropout layer and an EarlyStopping callback, the model still seems to suffer a bit from overfitting
+After adding a Dropout layer `model.add(tf.keras.layers.Dropout(0.2))`
+
+and an Early Stopping callback `tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=4)`
+
+the model was able to reduce overfitting on the training data
