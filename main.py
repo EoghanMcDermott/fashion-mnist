@@ -23,6 +23,21 @@ def render_image(index) : #method to render an image from the dataset
 train_images = train_images/255.0
 test_images = test_images/255.0
 
-render_image(5) #test image rendering with normalised values
+#render_image(5) #test image rendering with normalised values
 
-#time to create the model
+model = tf.keras.Sequential() #time to create the model
+model.add(tf.keras.layers.Flatten(input_shape=(28,28))) #flatten 28x28 pixel image into one vector of inputs
+model.add(tf.keras.layers.Dense(128, activation='relu')) #128 neuron fully connected layer
+model.add(tf.keras.layers.Dropout(0.2)) #add dropout layer to avoid overfitting
+model.add(tf.keras.layers.Dense(10, activation='softmax')) #use softmax to determine probability image is of 0-9 classes
+
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+#add a callback to help with overfitting
+stop_early = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=4)
+
+model.fit(train_images, train_labels, epochs=30)
+
+test_loss, test_accuracy = model.evaluate(test_images, test_labels)
+
+print('Test accuracy: ' + str(test_accuracy) + ' Test loss: ' + str(test_loss))
