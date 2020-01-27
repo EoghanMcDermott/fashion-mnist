@@ -36,8 +36,9 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 #add a callback to help with overfitting
 stop_early = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=4)
 
-model.fit(train_images, train_labels, epochs=30)
-
-test_loss, test_accuracy = model.evaluate(test_images, test_labels)
-
-print('Test accuracy: ' + str(test_accuracy) + ' Test loss: ' + str(test_loss))
+model.fit(
+    x=train_images, 
+    y=train_labels, 
+    epochs=50,
+    validation_data=(test_images, test_labels),
+    callbacks=[stop_early])
